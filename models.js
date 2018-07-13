@@ -2,6 +2,7 @@
 
 const uuid = require('uuid');
 const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
 
 const blogPostSchema = mongoose.Schema({
   title: {type: String, required: true},
@@ -10,7 +11,7 @@ const blogPostSchema = mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
   },
-  created: {type: String},
+  created: {type: Date, default: Date.now},
 });
 
 blogPostSchema.virtual("authorString").get(function() {
@@ -21,6 +22,7 @@ blogPostSchema.methods.serialize = function() {
   return {
     id: this._id,
     title: this.title,
+    content: this.content,
     author: this.authorString,
     created: this.created
   };

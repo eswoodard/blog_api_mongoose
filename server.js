@@ -1,15 +1,18 @@
+"use strict";
+
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-
-const app = express();
 
 mongoose.Promise = global.Promise;
 
 const {PORT, DATABASE_URL} = require('./config');
 const blogPostRouter = require('./blogPostRouter');
 
+const app = express();
+
 app.use(morgan('common'));
+app.use(express.json());
 app.use('/blog_post', blogPostRouter);
 
 let server;
