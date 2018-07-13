@@ -1,7 +1,7 @@
 "use strict";
 
 const uuid = require('uuid');
-cons mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 const blogPostSchema = mongoose.Schema({
   title: {type: String, required: true},
@@ -11,7 +11,7 @@ const blogPostSchema = mongoose.Schema({
     lastName: {type: String, required: true},
   },
   created: {type: String},
-})
+});
 
 blogPostSchema.virtual("authorString").get(function() {
   return `${this.author.firstName} ${this.author.lastName}`.trim();

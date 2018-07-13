@@ -6,11 +6,11 @@ const app = express();
 
 mongoose.Promise = global.Promise;
 
-const {PORT, DATABASE_URL} = require("/.config");
+const {PORT, DATABASE_URL} = require('./config');
 const blogPostRouter = require('./blogPostRouter');
 
 app.use(morgan('common'));
-app.use('/blog-post', blogPostRouter);
+app.use('/blog_post', blogPostRouter);
 
 let server;
 
