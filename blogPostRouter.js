@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json;
+const jsonParser = bodyParser.json();
 
-const {BlogPosts} = require('./models');
+const BlogPost = require('./models');
 
 
 
-router.get('/post', (req, res) => {
-  BlogPosts.find()
-  .then(post => {
-    res.json(post.map(post => post.serialize()))
+router.get('/posts', (req, res) => {
+  BlogPost.find()
+  .then(posts => {
+    res.json(posts.map(post => post.serialize()))
     })
   .catch(err => {
     console.error(err);
@@ -19,7 +19,7 @@ router.get('/post', (req, res) => {
 });
 
 router.get('/post/:id', (req, res) => {
-  BlogPosts
+  BlogPost
   .findById(req.params.id)
   .then(post => res.json(post.serialize()))
   .catch(err => {
@@ -29,8 +29,9 @@ router.get('/post/:id', (req, res) => {
 });
 
 router.post('/post', jsonParser, (req, res) => {
+  console.log("inside post request");
   const requiredFields = ["title", "content", "author"];
-  for (let i=0; 9<requiredFields.length; i++) {
+  for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if(!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`;
@@ -38,7 +39,7 @@ router.post('/post', jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  BlogPosts.create({
+  BlogPost.create({
     title: req.body.title,
     content: req.body.content,
     author: req.body.author,
@@ -65,14 +66,14 @@ router.put('/post/:id', (req, res) => {
      toUpdate[field] = req.body[field];
    }
  });
-BlogPosts
+BlogPost
 .findByIdAndUpdate(req.params.id, {$set: toUpdate})
 .then(post => res.status(204).end())
 .catch(err => res.status(500).json({mesage: "Internal server error"}));
 });
 
-router.delete('/posts/:id', (req, res) => {
-  BlogPosts.findByIdAndRemove(req.params.id)
+router.delete('/post/:id', (req, res) => {
+  BlogPost.findByIdAndRemove(req.params.id)
   .then(post => res.sendStatus(204).end())
   .catch(err => res.status(500).json({message: "Internal server error"}));
 });
