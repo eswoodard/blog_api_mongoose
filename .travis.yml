@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: HLzkohRE9pr+a9cLD6mwGqOY8Q/UGgMO5j2v9xb4SRe7epM3rUwj1r8boOAY3/cmHSrBzXo6OgOBAAFBJ0RwyJIP4y9FDdqqef2+Q0CtRmr8RIDu9XTmqRvt/ixYlIvoGVe34CqcU747/qScC5F1PSlWDu2iaO6o9Jk1L5BWb6R1m+9N1uvt6mx/63JUgXBaEX6ckUT4SiHfw9+O93z3a2Rge/a75GczTPN5eQycL+BujjIm+h+sMjG9zKcbYWeDfUt2k4CLiAqwctWL/xXaiTJRMV35LEr+HX+gBfcXoWY8qJqSGn+sz7sSmA0R4NJItpjzTchVgtwmKgi2qdCDsbz/TOkzOR7QVK4mJ1onVu1xs2GOUpBHCvy7Oauwp6hAqViVzSPfL0T/o50uthNVY3axaQL3cZuXbBiJNJ7aUtUg8sY+H6l8RpFt7GMcuwvhsGz61YZLtEOqnLLpN98JtER2mVVEQZTKRp52E11ObpYHTEvLCCXNWxU7bTXeMaz4rb6UhflvP7IK+ygUfcYE/Ya2BrlbGgx6ldYNBcMIpDLlisyDkphndgzZZQBnAqlg3u/kWjWl5h3qCw0BDjkcBpbfB4DERRnEB8zuMargSGWbi4nVfTJRi8szC+ROel8m7uj2eXmcVjM1vcNRWGzr7bkxdUJyK4nlLZneiuwq+SQ=
+  app: boiling-lake-67686
+  on:
+    repo: eswoodard/blog_api_mongoose
