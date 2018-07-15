@@ -7,10 +7,10 @@ const BlogPost = require('./models');
 
 
 
-router.get('/posts', (req, res) => {
+router.get('/post', (req, res) => {
   BlogPost.find()
-  .then(posts => {
-    res.json(posts.map(post => post.serialize()))
+  .then(post => {
+    res.json(post.map(post => post.serialize()))
     })
   .catch(err => {
     console.error(err);
